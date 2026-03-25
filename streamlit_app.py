@@ -28,7 +28,7 @@ def inject_css():
         /* ── Color tokens ──
            Primary-1: #FFED97  (warm yellow)
            Primary-2: #A6FFFF  (cyan)
-           Accent   : #97CBFF  (deep navy)
+           Accent   : #000000  (deep navy)
            White    : #ffffff
         ── */
 
@@ -39,30 +39,30 @@ def inject_css():
 
         /* ── Sidebar ── */
         [data-testid="stSidebar"] {
-            background: #97CBFF;
+            background: #000000;
         }
         [data-testid="stSidebar"] * {
-            color: #003366 !important;
+            color: #ffffff !important;
         }
         [data-testid="stSidebar"] hr {
             border-color: rgba(255,255,255,0.20);
         }
         [data-testid="stSidebar"] .stButton > button {
-            background: rgba(0,51,102,0.10) !important;
-            color: #003366 !important;
-            border: 1px solid rgba(0,51,102,0.35) !important;
+            background: rgba(255,255,255,0.08) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255,255,255,0.35) !important;
             font-weight: 700;
         }
         [data-testid="stSidebar"] .stButton > button:hover {
-            background: rgba(0,51,102,0.20) !important;
-            border-color: #003366 !important;
+            background: rgba(255,255,255,0.20) !important;
+            border-color: #ffffff !important;
             transform: none;
             box-shadow: none;
         }
 
         /* ── Page header card ── */
         .page-header {
-            background: linear-gradient(135deg, #97CBFF 0%, #005bb5 100%);
+            background: linear-gradient(135deg, #000000 0%, #005bb5 100%);
             color: #FFED97;
             padding: 18px 28px;
             border-radius: 12px;
@@ -85,10 +85,10 @@ def inject_css():
             border-radius: 8px;
             padding: 8px 22px;
             font-weight: 600;
-            color: #97CBFF;
+            color: #000000;
         }
         .stTabs [aria-selected="true"] {
-            background: #97CBFF !important;
+            background: #000000 !important;
             color: #FFED97 !important;
         }
 
@@ -110,7 +110,7 @@ def inject_css():
         .stFormSubmitButton > button[kind="primaryFormSubmit"],
         .stButton > button[kind="primary"] {
             background: #FFED97 !important;
-            color: #97CBFF !important;
+            color: #000000 !important;
             border: none !important;
         }
         .stFormSubmitButton > button[kind="primaryFormSubmit"]:hover,
@@ -141,7 +141,7 @@ def inject_css():
         .login-title {
             font-size: 32px;
             font-weight: 900;
-            color: #97CBFF;
+            color: #000000;
             margin-bottom: 4px;
         }
         .login-sub {
@@ -152,13 +152,13 @@ def inject_css():
 
         /* ── Sidebar user badge ── */
         .user-badge {
-            background: rgba(0,51,102,0.10);
-            border: 1px solid rgba(0,51,102,0.30);
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.30);
             border-radius: 10px;
             padding: 10px 14px;
             margin: 8px 0 16px;
             font-size: 14px;
-            color: #003366 !important;
+            color: #ffffff !important;
         }
 
         /* ── Main menu buttons ── */
@@ -179,14 +179,14 @@ def inject_css():
             background: #fffde8;
         }
         .menu-icon  { font-size: 48px; margin-bottom: 12px; }
-        .menu-label { font-size: 18px; font-weight: 700; color: #97CBFF; }
+        .menu-label { font-size: 18px; font-weight: 700; color: #000000; }
         .menu-sub   { font-size: 13px; color: #5a82a0; margin-top: 4px; }
 
         .main-welcome {
             text-align: center;
             padding: 30px 0 10px;
         }
-        .main-welcome h1 { color: #97CBFF; font-size: 32px; font-weight: 800; }
+        .main-welcome h1 { color: #000000; font-size: 32px; font-weight: 800; }
         .main-welcome p  { color: #5a82a0; font-size: 15px; }
         </style>
         """,
