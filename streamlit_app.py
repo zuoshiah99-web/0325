@@ -130,6 +130,33 @@ def inject_css():
             margin: 8px 0 16px;
             font-size: 14px;
         }
+
+        /* ── Main menu buttons ── */
+        .menu-btn {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(30,60,120,0.10);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .menu-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(30,60,120,0.18);
+            border-color: #2e5fa3;
+        }
+        .menu-icon { font-size: 48px; margin-bottom: 12px; }
+        .menu-label { font-size: 18px; font-weight: 700; color: #1a2a4a; }
+        .menu-sub { font-size: 13px; color: #7a90b0; margin-top: 4px; }
+
+        .main-welcome {
+            text-align: center;
+            padding: 30px 0 10px;
+        }
+        .main-welcome h1 { color: #1a2a4a; font-size: 32px; font-weight: 800; }
+        .main-welcome p  { color: #7a90b0; font-size: 15px; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -172,6 +199,44 @@ def page_header(icon, title):
         f'<div class="page-header">{icon}&nbsp;&nbsp;{title}</div>',
         unsafe_allow_html=True,
     )
+
+
+# ── Main Menu ─────────────────────────────────────────────────────
+def main_menu():
+    st.markdown(
+        f"""
+        <div class="main-welcome">
+            <h1>歡迎，{st.session_state.uid}</h1>
+            <p>請選擇要操作的功能</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    menus = [
+        ("👥", "客戶資料維護", "CUST"),
+        ("🏭", "廠商資料維護", "FACT"),
+        ("📦", "商品資料維護", "ITEM"),
+        ("👤", "用戶資料維護", "USER"),
+    ]
+
+    cols = st.columns(4, gap="large")
+    for col, (icon, label, key) in zip(cols, menus):
+        with col:
+            st.markdown(
+                f"""
+                <div class="menu-btn">
+                    <div class="menu-icon">{icon}</div>
+                    <div class="menu-label">{label}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+            if st.button(f"進入", key=f"btn_{key}", use_container_width=True, type="primary"):
+                st.session_state.page = label
+                st.rerun()
 
 
 # ── CUST 客戶資料維護 ──────────────────────────────────────────────
@@ -515,23 +580,29 @@ def main():
             unsafe_allow_html=True,
         )
         st.divider()
-        page = st.radio(
-            "功能選單",
-            ["👥 客戶資料維護", "🏭 廠商資料維護", "📦 商品資料維護", "👤 用戶資料維護"],
-            label_visibility="collapsed",
-        )
+        if st.button("🏠 主畫面", use_container_width=True):
+            st.session_state.page = "主畫面"
+            st.rerun()
+        st.markdown("<br>", unsafe_allow_html=True)
+        for label in ["👥 客戶資料維護", "🏭 廠商資料維護", "📦 商品資料維護", "👤 用戶資料維護"]:
+            clean = label[2:].strip()
+            if st.button(label, use_container_width=True, key=f"side_{clean}"):
+                st.session_state.page = clean
+                st.rerun()
         st.divider()
         if st.button("登出", use_container_width=True):
             st.session_state.clear()
             st.rerun()
 
+    page = st.session_state.get("page", "主畫面")
     dispatch = {
-        "👥 客戶資料維護": cust_page,
-        "🏭 廠商資料維護": fact_page,
-        "📦 商品資料維護": item_page,
-        "👤 用戶資料維護": user_page,
+        "主畫面":     main_menu,
+        "客戶資料維護": cust_page,
+        "廠商資料維護": fact_page,
+        "商品資料維護": item_page,
+        "用戶資料維護": user_page,
     }
-    dispatch[page]()
+    dispatch.get(page, main_menu)()
 
 
 main()
