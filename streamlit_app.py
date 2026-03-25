@@ -35,12 +35,21 @@ def inject_css():
         [data-testid="stSidebar"] * {
             color: #e8eef7 !important;
         }
-        [data-testid="stSidebar"] .stRadio label {
-            font-size: 15px;
-            padding: 6px 0;
-        }
         [data-testid="stSidebar"] hr {
             border-color: rgba(255,255,255,0.15);
+        }
+        /* Sidebar buttons: transparent bg with white border & text */
+        [data-testid="stSidebar"] .stButton > button {
+            background: rgba(255,255,255,0.08) !important;
+            color: #e8eef7 !important;
+            border: 1px solid rgba(255,255,255,0.30) !important;
+            font-weight: 600;
+        }
+        [data-testid="stSidebar"] .stButton > button:hover {
+            background: rgba(255,255,255,0.20) !important;
+            border-color: rgba(255,255,255,0.60) !important;
+            transform: none;
+            box-shadow: none;
         }
 
         /* ── Page header card ── */
