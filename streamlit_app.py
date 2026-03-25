@@ -25,50 +25,59 @@ def inject_css():
     st.markdown(
         """
         <style>
+        /* ── Color tokens ──
+           Primary  : #FFE153  (yellow)
+           Secondary: #84C1FF  (blue)
+           Black    : #1a1a1a
+           White    : #ffffff
+        ── */
+
         /* ── Global ── */
         [data-testid="stAppViewContainer"] {
-            background: #f0f4f8;
+            background: #f9f6eb;
         }
+
+        /* ── Sidebar ── */
         [data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #1a2a4a 0%, #243b6e 100%);
+            background: #1a1a1a;
         }
         [data-testid="stSidebar"] * {
-            color: #e8eef7 !important;
+            color: #ffffff !important;
         }
         [data-testid="stSidebar"] hr {
             border-color: rgba(255,255,255,0.15);
         }
-        /* Sidebar buttons: transparent bg with white border & text */
         [data-testid="stSidebar"] .stButton > button {
-            background: rgba(255,255,255,0.08) !important;
-            color: #e8eef7 !important;
-            border: 1px solid rgba(255,255,255,0.30) !important;
-            font-weight: 600;
+            background: rgba(255,225,83,0.12) !important;
+            color: #FFE153 !important;
+            border: 1px solid rgba(255,225,83,0.45) !important;
+            font-weight: 700;
         }
         [data-testid="stSidebar"] .stButton > button:hover {
-            background: rgba(255,255,255,0.20) !important;
-            border-color: rgba(255,255,255,0.60) !important;
+            background: rgba(255,225,83,0.25) !important;
+            border-color: #FFE153 !important;
             transform: none;
             box-shadow: none;
         }
 
         /* ── Page header card ── */
         .page-header {
-            background: linear-gradient(135deg, #1a2a4a 0%, #2e5fa3 100%);
-            color: white;
+            background: #FFE153;
+            color: #1a1a1a;
             padding: 18px 28px;
             border-radius: 12px;
             margin-bottom: 20px;
             font-size: 22px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(30,60,120,0.18);
+            box-shadow: 0 4px 12px rgba(255,225,83,0.35);
+            border-left: 6px solid #1a1a1a;
         }
 
         /* ── Tab styling ── */
         .stTabs [data-baseweb="tab-list"] {
             gap: 4px;
-            background: #dce6f5;
+            background: #eae8dc;
             border-radius: 10px;
             padding: 4px;
         }
@@ -76,11 +85,11 @@ def inject_css():
             border-radius: 8px;
             padding: 8px 22px;
             font-weight: 600;
-            color: #2e5fa3;
+            color: #1a1a1a;
         }
         .stTabs [aria-selected="true"] {
-            background: #2e5fa3 !important;
-            color: white !important;
+            background: #1a1a1a !important;
+            color: #FFE153 !important;
         }
 
         /* ── Forms ── */
@@ -88,18 +97,27 @@ def inject_css():
             background: white;
             border-radius: 12px;
             padding: 20px 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-top: 3px solid #84C1FF;
         }
 
-        /* ── Buttons ── */
+        /* ── Primary buttons ── */
         .stButton > button, .stFormSubmitButton > button {
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.2s;
         }
-        .stButton > button:hover {
+        .stFormSubmitButton > button[kind="primaryFormSubmit"],
+        .stButton > button[kind="primary"] {
+            background: #FFE153 !important;
+            color: #1a1a1a !important;
+            border: none !important;
+        }
+        .stFormSubmitButton > button[kind="primaryFormSubmit"]:hover,
+        .stButton > button[kind="primary"]:hover {
+            background: #ffd700 !important;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(46,95,163,0.3);
+            box-shadow: 0 4px 12px rgba(255,225,83,0.45);
         }
 
         /* ── Dataframe ── */
@@ -114,30 +132,33 @@ def inject_css():
             background: white;
             border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 8px 32px rgba(30,60,120,0.12);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             max-width: 420px;
             margin: 60px auto 0;
             text-align: center;
+            border-top: 5px solid #FFE153;
         }
         .login-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: #1a2a4a;
-            margin-bottom: 6px;
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 4px;
         }
         .login-sub {
-            color: #7a90b0;
+            color: #888;
             margin-bottom: 28px;
             font-size: 14px;
         }
 
         /* ── Sidebar user badge ── */
         .user-badge {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255,225,83,0.15);
+            border: 1px solid rgba(255,225,83,0.40);
             border-radius: 10px;
             padding: 10px 14px;
             margin: 8px 0 16px;
             font-size: 14px;
+            color: #FFE153 !important;
         }
 
         /* ── Main menu buttons ── */
@@ -146,26 +167,26 @@ def inject_css():
             border-radius: 16px;
             padding: 36px 20px;
             text-align: center;
-            box-shadow: 0 4px 16px rgba(30,60,120,0.10);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
         }
         .menu-btn:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(30,60,120,0.18);
-            border-color: #2e5fa3;
+            box-shadow: 0 8px 24px rgba(255,225,83,0.30);
+            border-color: #FFE153;
         }
-        .menu-icon { font-size: 48px; margin-bottom: 12px; }
-        .menu-label { font-size: 18px; font-weight: 700; color: #1a2a4a; }
-        .menu-sub { font-size: 13px; color: #7a90b0; margin-top: 4px; }
+        .menu-icon  { font-size: 48px; margin-bottom: 12px; }
+        .menu-label { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+        .menu-sub   { font-size: 13px; color: #888; margin-top: 4px; }
 
         .main-welcome {
             text-align: center;
             padding: 30px 0 10px;
         }
-        .main-welcome h1 { color: #1a2a4a; font-size: 32px; font-weight: 800; }
-        .main-welcome p  { color: #7a90b0; font-size: 15px; }
+        .main-welcome h1 { color: #1a1a1a; font-size: 32px; font-weight: 800; }
+        .main-welcome p  { color: #888; font-size: 15px; }
         </style>
         """,
         unsafe_allow_html=True,
